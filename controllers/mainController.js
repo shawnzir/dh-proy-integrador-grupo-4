@@ -8,6 +8,7 @@ const mainController = {
     product: function(req, res) {
       res.render('product')
     },
+    login: ""
 };
 
 module.exports = mainController
