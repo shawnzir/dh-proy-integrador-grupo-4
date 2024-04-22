@@ -1,14 +1,39 @@
+let data = require("../public/db/data")
 const mainController = {
     index: function(req, res) {
-        res.render('index', { title: 'Express' });
-      },
+      let productos = data.productos;
+      res.render('index', {user: req.session.user?req.session.user:null, productos: productos});
+    },
     register: function(req, res) {
       res.render('register', { title: 'Register'});
     },
-    product: function(req, res) {
-      res.render('product')
+    login: (req,res)=>{
+      res.render("login", {error:""})
     },
-    login: ""
+    processLogin:(req,res)=>{
+      let usuarios = data.usuarios;
+      let usuario = req.body;
+      let usuarioValido = null;
+      usuarios.forEach(element=>{
+        if(element.email == usuario.usuario && element.contraseña == usuario.contraseña){
+          usuarioValido = element
+        }
+      })
+      if(usuarioValido){
+        req.session.user = usuarioValido
+        console.log(req.session.user);
+        res.redirect("/")
+      }else{
+        res.render("login", { error: "La contraseña o el usuario es incorrecto" });
+      }
+    },
+    profile: (req,res)=>{
+      res.render("profile", {user: req.session.user})
+      console.log(req.session.user);
+    },
+    profileEdit: (req,res) =>{
+      res.render("profile-edit", {user: req.session.user})
+    }
 };
 
 module.exports = mainController
