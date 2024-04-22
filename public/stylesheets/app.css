@@ -186,6 +186,10 @@ hr {
 
 .product-box_image {
   border-bottom: 1px solid var(--light-gray);
+  height: 200px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .product-box_data {

@@ -38,13 +38,11 @@
 				<div class="col-12 col-sm-6 col-lg-3">
 					<section class="product-box">
 						<a href="/product">
-							<figure class="product-box_image">
-								<img src="<%=element.foto%>" alt="cafetera moulinex">
-							</figure>
+							<figure class="product-box_image" style="background-image: url(<%=element.foto%>)"></figure>
 							<article class="product-box_data">
 								<h2><%= element.nombre %></h2>
 								<p><%= element.descripcion %></p>
-								<p>Comentarios: 12</p>
+								<p>Comentarios: <%=element.comentarios.length%></p>
 							</article>
 						</a>
 					</section>
@@ -64,13 +62,11 @@
 				<div class="col-12 col-sm-6 col-lg-3">
 					<section class="product-box">
 						<a href="/product">
-							<figure class="product-box_image">
-								<img src="<%=element.foto%>" alt="cafetera moulinex">
-							</figure>
+							<figure class="product-box_image" style="background-image: url(<%=element.foto%>)"></figure>
 							<article class="product-box_data">
 								<h2><%= element.nombre %></h2>
 								<p><%= element.descripcion %></p>
-								<p>Comentarios: 12</p>
+								<p>Comentarios: <%=element.comentarios.length%></p>
 							</article>
 						</a>
 					</section>
