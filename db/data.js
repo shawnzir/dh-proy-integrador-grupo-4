@@ -16,7 +16,7 @@ module.exports={
                 {
                     id: 1,
                     nombre:"Shawn",
-                    comentario:"anda mas de 300?",
+                    comentario:"llega a las tres gambas?",
                     foto:"images/users/pibe gris.jpg",
                 },
     
@@ -257,7 +257,7 @@ module.exports={
                 {
                     id: 4,
                     nombre: "Manu",
-                    comentario: "¿El sistema de frenado cuenta con cerámicos?",
+                    comentario: "¿aceptas permuta un terreno en san clemente?",
                     foto:"images/users/pibe_gris.jpg"
                 }
             ]
