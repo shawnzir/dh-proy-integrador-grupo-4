@@ -275,12 +275,12 @@ module.exports={
             fotoPerfil: "user-1.jpg"
           },
           {
-            nombre: "Juan Martínez",
-            email: "juan.martinez@example.com",
-            usuario: "juanmartinez",
-            contraseña: "Secure123!",
+            nombre: "Juan Bautista Lignini",
+            email: "bautistalignini@gmail.com",
+            usuario: "juanbl",
+            contraseña: "1",
             fechaNacimiento: new Date("1985-08-22"),
-            numeroDocumento: "23654187",
+            numeroDocumento: "46293975",
             fotoPerfil: "user-2.jpg"
           },
           {

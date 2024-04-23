@@ -1,18 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link width="" rel="shortcut icon" href="images/favicon/favicon.ico" />
+	<!-- Head -->
+	<%- include("./partials/head") %>
+	<!-- Head -->
 
-		<title> EliteAutoMarket</title>
-		<!-- Font Awesome Stylesheet -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-		<!-- Bootstrap Grid Stylesheet -->
-		<link rel="stylesheet" href="stylesheets/bootstrap-grid.min.css">
-		<!-- Own Stylesheet -->
-		<link rel="stylesheet" href="stylesheets/app.css">
-	</head>
 	<!-- Header -->
 	<% if (user) { %>
 	<%- include("./partials/headerLogueado") %>
@@ -23,7 +14,7 @@
 
 	<!-- Banner -->
 	<div class="banner">
-		<img src="images/img-home-banner.jpg" alt="Banner de ofertas">
+		<img src="images/banner bmw.jpg" alt="Banner de ofertas">
 	</div>
 	<!-- /Banner -->
 
@@ -31,7 +22,7 @@
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="products-title">Novedades</h2>
+				<h2 class="products-title fjalla">Novedades</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
 			<% productos.forEach(element => { %>
@@ -40,9 +31,9 @@
 						<a href="/product">
 							<figure class="product-box_image" style="background-image: url(<%=element.foto%>)"></figure>
 							<article class="product-box_data">
-								<h2><%= element.nombre %></h2>
-								<p><%= element.descripcion %></p>
-								<p>Comentarios: <%=element.comentarios.length%></p>
+								<h2 class="fjalla"><%= element.nombre %></h2>
+								<p class="ubuntu"><%= element.descripcion %></p>
+								<p class="ubuntu">Comentarios: <%=element.comentarios.length%></p>
 							</article>
 						</a>
 					</section>
@@ -63,8 +54,8 @@
 					<section class="product-box">
 						<a href="/product">
 							<figure class="product-box_image" style="background-image: url(<%=element.foto%>)"></figure>
-							<article class="product-box_data">
-								<h2><%= element.nombre %></h2>
+							<article class="product-box_data ubuntu">
+								<h2 class="fjalla"><%= element.nombre %></h2>
 								<p><%= element.descripcion %></p>
 								<p>Comentarios: <%=element.comentarios.length%></p>
 							</article>

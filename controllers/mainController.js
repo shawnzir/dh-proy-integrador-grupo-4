@@ -1,4 +1,4 @@
-let data = require("../public/db/data")
+let data = require("../db/data")
 const mainController = {
     index: function(req, res) {
       let productos = data.productos;
@@ -27,12 +27,18 @@ const mainController = {
         res.render("login", { error: "La contraseña o el usuario es incorrecto" });
       }
     },
+    
     profile: (req,res)=>{
-      res.render("profile", {user: req.session.user})
+      let productos = data.productos
+      res.render("profile", {user: req.session.user?req.session.user:null, productos: productos})
       console.log(req.session.user);
     },
     profileEdit: (req,res) =>{
       res.render("profile-edit", {user: req.session.user})
+    },
+    searchResultes: (req,res) =>{
+      let productos = data.productos;
+      res.render("search-results", {user: req.session.user?req.session.user:null, productos: productos})
     }
 };
 

@@ -9,4 +9,6 @@ router.get('/login', mainController.login)
 router.post('/login', mainController.processLogin)
 router.get("/profile", mainController.profile)
 router.get("/profile-edit", mainController.profileEdit)
+router.get("/search-results", mainController.searchResultes),
+
 module.exports = router;
