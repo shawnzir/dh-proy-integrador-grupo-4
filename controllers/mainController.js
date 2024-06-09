@@ -1,4 +1,9 @@
 let data = require("../db/data")
+
+//const db = require('../database/models')
+//const ,,, = db.,,, en este no entendi bien que va 
+
+
 const mainController = {
     index: function(req, res) {
       let productos = data.productos;
