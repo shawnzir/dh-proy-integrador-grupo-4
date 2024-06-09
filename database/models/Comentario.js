@@ -1,4 +1,5 @@
 const { ForeignKeyConstraintError } = require("sequelize");
+const data = require("../../db/data");
 
 module.exports = function(sequelize, dataTypes) {
 
@@ -19,13 +20,26 @@ module.exports = function(sequelize, dataTypes) {
             ForeignKey: true,  // no se si es asi ;) 
             type: dataTypes.INTEGER
         },
-        comeentario: {
+        comentario: {
             type: dataTypes.STRING(500)
-
+        },
+        createdAt: {
+            type: dataTypes.DATE
+        },
+        updatedAt: {
+            type: dataTypes.DATE
         }
 
     }
-        // FALTA TERMINAR
 
+    let config = {
+        tableName: "comentarios",
+        timestamps: false,
+        underscored: true
+    }
+    
+    let Comentario = sequelize.define(alias, cols, config);
+    
+    return Comentario;
 
 }
