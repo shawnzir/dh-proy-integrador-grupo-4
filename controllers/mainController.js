@@ -2,7 +2,9 @@ const data = require("../db/data")
 
 const db = require('../database/models')
 
-const usuarios = db.Usuario 
+const usuarios = db.Usuario // requerismos del models la tabal de  usarios
+
+const productos = db.Producto // requerismos del models la tabal de  productos 
 
 
 const mainController = {
