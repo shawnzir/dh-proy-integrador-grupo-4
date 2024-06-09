@@ -1,7 +1,8 @@
-let data = require("../db/data")
+const data = require("../db/data")
 
-//const db = require('../database/models')
-//const ,,, = db.,,, en este no entendi bien que va 
+const db = require('../database/models')
+
+const usuarios = db.Usuario 
 
 
 const mainController = {
