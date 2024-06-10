@@ -14,7 +14,7 @@
 			<div class="container products-wrapper">
 				<div class="d-flex align-items-center">
 					<h2 class="products-title fjalla">
-						<%=product[0].nombre%>
+						
 					</h2>
 					<p class="product-detail-description">
 						<a href="/product/product-add">Editar</a>
@@ -24,15 +24,15 @@
 				<div class="product-detail ubuntu">
 					<div class="row">
 						<article class="col-12 col-lg-8 product-detail-info">
-							<img class="product-detail-img" src=<%=product[0].foto%>
+							<img class="product-detail-img" src=
 							<p class="product-detail-description desc">
-								<%= product[0].descripcion %>
+								
 							</p>
 						</article>
 
 						<div class="col-12 col-lg-4">
 							<section class="comments">
-								<% for(let i=0; i < product[0].comentarios.length; i++) { %>
+								
 
 									<article>
 										<img src="images/users/pibe gris.jpg" alt="">
@@ -40,14 +40,14 @@
 										<div class="data">
 											<p class="user">
 												<strong> <a href="/profile">
-														<%= product[0].comentarios[i].nombre %>
+														
 													</a> </strong>
-												<%= product[0].comentarios[i].comentario %>
+												
 											</p>
 										</div>
 
 									</article>
-									<% } %>
+									
 							</section>
 
 							<form action="/product" method="get" class="form">
