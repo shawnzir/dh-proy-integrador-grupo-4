@@ -1,18 +1,28 @@
-const data = require("../db/data")
+// const data = require("../db/data")
 
-//const data = require('../database/models')
+const db = require('../database/models')
 
-//const usuarios = data.Usuario // requerismos del models la tabal de  usarios
+const usuarios = db.Usuario // requerismos del models la tabal de  usarios
 
-//const productos = data.Producto // requerismos del models la tabal de  productos 
+const productos = db.Producto // requerismos del models la tabal de  productos 
 
-//const comentarios = data.Cometario
+const comentarios = db.Comentario
 
 
 const mainController = {
     index: function(req, res) {
-      let productos = data.productos;
-      res.render('index', {user: req.session.user?req.session.user:null, productos: productos});
+      productos.findAll()
+      .then(function(data) {
+        res.render("index", {productos: data})
+        data.forEach(element=>{
+          console.log(element.dataValues)
+        })
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
+      //let productos = data.productos;
+      //res.render('index', {user: req.session.user?req.session.user:null, productos: productos});
     },
     register: function(req, res) {
       res.render('register', { title: 'Register'});

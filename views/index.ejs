@@ -5,11 +5,7 @@
 	<!-- Head -->
 
 	<!-- Header -->
-	<% if (user) { %>
-	<%- include("./partials/headerLogueado") %>
-	<% }else{ %>
 	<%- include("./partials/header") %>
-	<% } %>
 	<!-- Header -->
 
 	<!-- Banner -->
@@ -29,11 +25,11 @@
 				<div class="col-12 col-sm-6 col-lg-3">
 					<section class="product-box">
 						<a href="/product">
-							<figure class="product-box_image" style="background-image: url(<%=element.foto%>)"></figure>
+							<figure class="product-box_image" style="background-image: url(images/products/autos/<%=element.dataValues.foto%>)"></figure>
 							<article class="product-box_data">
-								<h2 class="fjalla"><%= element.nombre %></h2>
-								<p class="ubuntu"><%= element.descripcion %></p>
-								<p class="ubuntu">Comentarios: <%=element.comentarios.length%></p>
+								<h2 class="fjalla"><%= element.dataValues.nombre %></h2>
+								<p class="ubuntu"><%= element.dataValues.descripcion %></p>
+								<p class="ubuntu">Comentarios:</p>
 							</article>
 						</a>
 					</section>
@@ -53,11 +49,11 @@
 				<div class="col-12 col-sm-6 col-lg-3">
 					<section class="product-box">
 						<a href="/product">
-							<figure class="product-box_image" style="background-image: url(<%=element.foto%>)"></figure>
+							<figure class="product-box_image" style="background-image: url(images/products/autos/<%=element.dataValues.foto%>)"></figure>
 							<article class="product-box_data ubuntu">
-								<h2 class="fjalla"><%= element.nombre %></h2>
-								<p><%= element.descripcion %></p>
-								<p>Comentarios: <%=element.comentarios.length%></p>
+								<h2 class="fjalla"><%= element.dataValues.nombre %></h2>
+								<p><%= element.dataValues.descripcion %></p>
+								<p>Comentarios:</p>
 							</article>
 						</a>
 					</section>

@@ -18,13 +18,13 @@ module.exports = function(sequelize, dataTypes) {
         descripcion: {
             type: dataTypes.STRING(500)
         },
-        createdAt: {
+        created_at: {
             type: dataTypes.DATE
         },
-        updatedAt: {
+        updated_at: {
             type: dataTypes.DATE
         },
-        deletedAt: {
+        deleted_at: {
             type: dataTypes.DATE
         }
 
