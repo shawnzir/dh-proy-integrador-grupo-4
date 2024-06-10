@@ -1,15 +1,12 @@
+//const db = require('../database/models')
 
-
-const db = require('../database/models')
+const db = require('../db/data')
 
 //const productos = db.Producto // requerismos del models la tabal de  productos 
 
 module.exports={
   product: (req,res)=>{
-    let product = db.Producto.findAll()
-      
-   
-      
+    let product = db.productos
     
     res.render("product",{product})
   },
