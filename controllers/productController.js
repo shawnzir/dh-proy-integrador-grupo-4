@@ -1,4 +1,9 @@
 const db = require("../db/data")
+
+//const db = require('../database/models')
+
+//const productos = db.Producto // requerismos del models la tabal de  productos 
+
 module.exports={
   product: (req,res)=>{
     let product = db.productos
