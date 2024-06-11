@@ -15,6 +15,9 @@ const productController = {
         res.status(404).send("Producto no encontrado")
         console.log("Info del producto: ", autos);
       }
+      else{
+        res.render("product")
+      }
     })
     
     .catch(function(err) {
