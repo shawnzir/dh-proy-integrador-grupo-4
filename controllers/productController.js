@@ -2,9 +2,7 @@ const db = require('../database/models')
 
 // const db = require('../db/data')
 
-const productos = db.Producto
-
-//const productos = db.Producto // requerismos del models la tabal de  productos 
+const productos = db.Producto // requerismos del models la tabal de  productos 
 
 const productController = {
   //Debe mostrar el detalle de un producto
@@ -13,15 +11,12 @@ const productController = {
     console.log("ID recibido: ", id);
     productos.findByPk(id)
     .then(function(autos) {
-      if (autos) {
-        res.render("product", { autos })
+      if (!autos) {
+        res.status(404).send("Producto no encontrado")
         console.log("Info del producto: ", autos);
-      } else {
-        res.status(404).send("Producto no encontrado");
-        console.log("Producto no encontrado para el ID: ", id);
       }
     })
-    })
+    
     .catch(function(err) {
       console.log(err);
     })
