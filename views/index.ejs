@@ -8,11 +8,6 @@
 	<%- include("./partials/header") %>
 	<!-- Header -->
 
-	<!-- Banner -->
-	<div class="banner">
-		<img src="images/banner bmw.jpg" alt="Banner de ofertas">
-	</div>
-	<!-- /Banner -->
 
 	<!-- Novedades -->
 	<div class="container products-wrapper">
@@ -27,7 +22,7 @@
 						<a href="/product/<%= element.dataValues.id %>">
 							<figure class="product-box_image" style="background-image: url(images/products/autos/<%=element.dataValues.foto%>)"></figure>
 							<article class="product-box_data">
-								<h2 class="fjalla"><%= element.dataValues.nombre %></h2>
+								<h2 class="fjalla"><%= element.dataValues.producto %></h2>
 								<p class="ubuntu"><%= element.dataValues.descripcion %></p>
 								<p class="ubuntu">Comentarios:</p>
 							</article>
