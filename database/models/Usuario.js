@@ -1,7 +1,6 @@
-module.exports = function(sequelize, dataTypes) {
+module.exports = function (sequelize, dataTypes) {
 
     const alias = "Usuario";
-
     const cols = {
         id: {
             autoIncrement: true,
@@ -12,7 +11,7 @@ module.exports = function(sequelize, dataTypes) {
             type: dataTypes.STRING
         },
         password: {
-            type: dataTypes.STRING 
+            type: dataTypes.STRING
         },
         fecha: {
             type: dataTypes.DATE
@@ -31,14 +30,21 @@ module.exports = function(sequelize, dataTypes) {
         }
     }
 
-let config = {
-    tableName: "usuarios",
-    timestamps: false,
-    underscored: true
-}
+    let config = {
+        tableName: "usuarios",
+        timestamps: false,
+        underscored: true
+    }
 
-let Usuario = sequelize.define(alias, cols, config);
+    let Usuario = sequelize.define(alias, cols, config);
 
-return Usuario;
+    Usuario.associate = function (models) {
+        Usuario.hasMany(models.Comentario, {
+            as: 'comentario',
+            foreignKey: 'usuario_id'
+        });
+    }
+
+    return Usuario;
 
 }

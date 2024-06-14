@@ -4,6 +4,8 @@ const db = require('../database/models')
 
 const productos = db.Producto // requerismos del models la tabal de  productos 
 
+const comentarios = db.Comentario
+
 const productController = {
   //Debe mostrar el detalle de un producto
   product: function (req,res) {
@@ -18,9 +20,9 @@ const productController = {
       else{
         res.render('product', { producto: autos.dataValues }); // tuve que traer esto asi ya que si trai solo autos me lo trai medio raro
         // y se me hacia dificil mostrarlo
-        console.log("Info del producto: ", autos.dataValues)
       }
     })
+   
     
     .catch(function(err) {
       console.log(err);

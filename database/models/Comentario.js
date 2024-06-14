@@ -1,7 +1,7 @@
 const { ForeignKeyConstraintError } = require("sequelize");
 const data = require("../../db/data");
 
-module.exports = function(sequelize, dataTypes) {
+module.exports = function (sequelize, dataTypes) {
 
     const alias = "Comentario";
 
@@ -11,13 +11,11 @@ module.exports = function(sequelize, dataTypes) {
             primaryKey: true,
             type: dataTypes.INTEGER
         },
-       
+
         usuario_id: {
-            ForeignKey: true,  // no se si es asi ;) 
             type: dataTypes.INTEGER
         },
         producto_id: {
-            ForeignKey: true,  // no se si es asi ;) 
             type: dataTypes.INTEGER
         },
         comentario: {
@@ -37,9 +35,17 @@ module.exports = function(sequelize, dataTypes) {
         timestamps: false,
         underscored: true
     }
-    
+
     let Comentario = sequelize.define(alias, cols, config);
-    
+
+    Comentario.associate = function (models) {
+        Comentario.belongsTo(models.Usuario, {
+            as: 'usuario',
+            foreignKey: 'usuario_id' //
+        });
+    }
+
+
     return Comentario;
 
 }
