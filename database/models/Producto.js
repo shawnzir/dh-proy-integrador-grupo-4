@@ -43,14 +43,14 @@ Producto.associate = function (models) {
         as: 'usuario',
         foreignKey: 'usuario_id' 
     }),
-    Producto.belongsToMany(models.Comentario, {
-        as:'productos',
-        through: "",
-        foreignKey: "producto_id",
-        otherKey: "usuario_id",
-        timestamps: false
+
+    Producto.hasMany(models.Comentario, {
+        as: 'comentarios',
+        foreignKey: 'producto_id' 
     })
-}
+
+
+    }
 
 
 
