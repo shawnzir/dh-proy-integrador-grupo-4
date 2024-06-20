@@ -108,6 +108,7 @@ INSERT INTO `productos` (`id`, `foto`, `producto`, `descripcion`, `created_at`, 
 CREATE TABLE `usuarios` (
   `id` int(10) UNSIGNED NOT NULL,
   `email` varchar(100) NOT NULL,
+  `usuario` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `fecha` date DEFAULT NULL,
   `dni` int(11) DEFAULT NULL,

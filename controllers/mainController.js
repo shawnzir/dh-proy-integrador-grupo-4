@@ -8,6 +8,8 @@ const productos = db.Producto // requerismos del models la tabal de  productos
 
 const comentarios = db.Comentario
 
+const bcrypt = require('bcryptjs')
+
 
 const mainController = {
     index: function(req, res) {
@@ -26,6 +28,24 @@ const mainController = {
     },
     register: function(req, res) {
       res.render('register', { title: 'Register'});
+    
+    },
+    info: function (req, res) {
+      const usuario = {
+        email: req.body.email,
+        usuario: req.body.usuario,
+        password: bcrypt.hashSync(req.body.password, 10),
+        fecha: req.body.fecha,
+        dni: req.body.dni,
+        foto: req.body.foto
+      };
+
+      db.Usuario.create(usuario)
+        .then(() => {
+          return res.redirect('/login')
+        })
+
+      
     },
     login: (req,res)=>{
       res.render("login", {error:""})

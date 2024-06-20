@@ -5,6 +5,7 @@ const mainController = require("../controllers/mainController");
 /* GET home page. */
 router.get('/', mainController.index);
 router.get('/register', mainController.register);
+router.post('/register', mainController.info)
 router.get('/login', mainController.login);
 router.post('/login', mainController.processLogin);
 router.get("/profile", mainController.profile);

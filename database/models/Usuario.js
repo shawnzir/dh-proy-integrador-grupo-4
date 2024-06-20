@@ -10,6 +10,9 @@ module.exports = function (sequelize, dataTypes) {
         email: {
             type: dataTypes.STRING
         },
+        usuario: {
+            type: dataTypes.STRING
+        },
         password: {
             type: dataTypes.STRING
         },
