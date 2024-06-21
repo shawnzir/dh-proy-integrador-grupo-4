@@ -23,8 +23,8 @@
 		<div class="form-container ubuntu">
 			<form action="/login" method="POST">
 				<div class="campo">
-					<label for="usuario">Usuario</label>
-					<input type="email" placeholder="Ingresar email" name="usuario">
+					<label for="email">Email</label>
+					<input type="email" placeholder="Ingresar email" name="email">
 				</div>
 				<div class="campo ">
 					<label for="contraseña">Contraseña</label>
@@ -38,7 +38,7 @@
 					<p style="color: red;"><%= error %></p>
 				<% } %>
 				 
-				<button>Ingresar</button>
+				<button type="submit">Ingresar</button>
 			</form>
 		</div>
 	</div>

@@ -5,11 +5,11 @@ const mainController = require("../controllers/mainController");
 /* GET home page. */
 router.get('/', mainController.index);
 router.get('/register', mainController.register);
-router.post('/register', mainController.info)
 router.get('/login', mainController.login);
-router.post('/login', mainController.processLogin);
 router.get("/profile", mainController.profile);
 router.get("/profile-edit", mainController.profileEdit);
 router.get("/search-results", mainController.searchResultes);
+router.post('/register', mainController.info);
+router.post('/login', mainController.processLogin);
 
 module.exports = router;
