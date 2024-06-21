@@ -122,12 +122,12 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `email`, `password`, `fecha`, `dni`, `foto`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'shawnzir@gmai.com', '12345', '2024-04-15', 4629873, 'foto.png', '2024-04-15 18:03:04', '2024-04-15 18:03:04', NULL),
-(2, 'bautistalignini@gmail.com', '54321', '2024-04-15', 46293975, 'foto.png', '2024-04-15 19:09:29', '2024-04-15 19:09:29', NULL),
-(3, 'tomasweskam@gmail.com', '1111', '2024-04-15', 4648395, 'foto.png', '2024-04-15 19:10:22', '2024-04-15 19:10:22', NULL),
-(4, 'manuelsacullo@gmail.com', '2222', '2024-04-15', 463948545, 'foto.png', '2024-04-15 19:43:44', '2024-04-15 19:43:44', NULL),
-(5, 'ferminpacheco@gmail.com', '33333', '2024-04-15', 22852343, 'foto.png', '2024-04-15 19:45:32', '2024-04-15 19:45:32', NULL);
+INSERT INTO `usuarios` (`id`, `email`,`usuario`, `password`, `fecha`, `dni`, `foto`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'shawnzir@gmai.com','Shawn', '12345', '2024-04-15', 4629873, 'foto.png', '2024-04-15 18:03:04', '2024-04-15 18:03:04', NULL),
+(2, 'bautistalignini@gmail.com', 'bauti','54321', '2024-04-15', 46293975, 'foto.png', '2024-04-15 19:09:29', '2024-04-15 19:09:29', NULL),
+(3, 'tomasweskam@gmail.com', 'tomas','1111', '2024-04-15', 4648395, 'foto.png', '2024-04-15 19:10:22', '2024-04-15 19:10:22', NULL),
+(4, 'manuelsacullo@gmail.com','manu', '2222', '2024-04-15', 463948545, 'foto.png', '2024-04-15 19:43:44', '2024-04-15 19:43:44', NULL),
+(5, 'ferminpacheco@gmail.com', 'fermin','33333', '2024-04-15', 22852343, 'foto.png', '2024-04-15 19:45:32', '2024-04-15 19:45:32', NULL);
 
 --
 -- Índices para tablas volcadas
