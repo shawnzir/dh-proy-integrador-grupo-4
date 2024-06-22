@@ -23,12 +23,12 @@
 			<% productos.forEach(element => { %>
 				<div class="col-12 col-sm-6 col-lg-3">
 					<section class="product-box">
-						<a href="/product/<%= element.dataValues.id %>">
-							<figure class="product-box_image" style="background-image: url(images/products/autos/<%=element.dataValues.foto%>)"></figure>
+						<a href="/product/<%= element.id %>">
+							<figure class="product-box_image" style="background-image: url(images/products/autos/<%=element.foto%>)"></figure>
 							<article class="product-box_data">
-								<h2 class="fjalla"><%= element.dataValues.producto %></h2>
-								<p class="ubuntu"><%= element.dataValues.descripcion %></p>
-								<p class="ubuntu">Comentarios:</p>
+								<h2 class="fjalla"><%= element.producto %></h2>
+								<p class="ubuntu"><%= element.descripcion %></p>
+								<p class="ubuntu">Comentarios: 3 </p>
 							</article>
 						</a>
 					</section>
@@ -48,11 +48,11 @@
 				<div class="col-12 col-sm-6 col-lg-3">
 					<section class="product-box">
 						<a href="/product">
-							<figure class="product-box_image" style="background-image: url(images/products/autos/<%=element.dataValues.foto%>)"></figure>
+							<figure class="product-box_image" style="background-image: url(images/products/autos/<%=element.foto%>)"></figure>
 							<article class="product-box_data ubuntu">
-								<h2 class="fjalla"><%= element.dataValues.nombre %></h2>
-								<p><%= element.dataValues.descripcion %></p>
-								<p>Comentarios:</p>
+								<h2 class="fjalla"><%= element.nombre %></h2>
+								<p><%= element.descripcion %></p>
+								<p>Comentarios: 3 </p>
 							</article>
 						</a>
 					</section>
