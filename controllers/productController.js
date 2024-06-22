@@ -34,7 +34,23 @@ const productController = {
   //Debe agregar un producto
   productAdd: (req,res)=>{
     res.render("product-add", {usuario: req.session.usuario?req.session.usuario:null})
-    console.log(req.session.usuario);
+    console.log("es la session", req.session.usuario);
+  },
+
+  productAddinfo: (req,res)=>{
+    const producto = {
+      foto: req.body.foto,
+      producto: req.body.producto,
+      descripcion: req.body.descripcion,
+      usuario_id: req.session.usuario.id
+    };
+    db.Producto.create(producto)
+      .then(() => {
+        return res.redirect('/')
+      })
+      .catch(function(err){
+        console.log(err);
+      })
   },
   
 
