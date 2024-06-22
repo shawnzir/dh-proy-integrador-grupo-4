@@ -13,9 +13,7 @@ const productController = {
     const id = req.params.id
     console.log("ID recibido: ", id);
     productos.findByPk(id, {
-
       include:[{association: 'usuario'},{association: 'comentarios'}]
-
     })
     .then(function(autos) {
       if (!autos) {
@@ -27,12 +25,9 @@ const productController = {
         res.render('product', { producto: autos}); 
       }
     })
-   
-    
     .catch(function(err) {
       console.log(err);
     })
-
     // let product = db.productos
     // res.render("product",{product})
   },
