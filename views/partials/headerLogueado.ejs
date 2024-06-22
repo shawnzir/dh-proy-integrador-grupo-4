@@ -43,12 +43,17 @@
 								<i class="fas fa-user"></i>
 						</a>
 					</li>
+					<!-- Boton de Cerrar Sesion -->
 					<li>
-						<form action="/" method="GET" class="ubuntu">
+						<% if(locals.usuario) { %>
+						<form action="/login/logout" method="POST" class="ubuntu">
 							<button class="logout" type="submit">
 								Cerrar sesión <i class="fas fa-sign-in-alt"></i>
 							</button>
 						</form>
+						<% } else{ %>
+						<%- include("./partials/header") %>
+						<% } %>
 					</li>
 					
 				</ul>

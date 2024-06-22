@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
-	<!-- Head -->
+<!-- Head -->
 	<%- include("./partials/head") %>
-	<!-- Head -->
-	<!-- Header -->
+<!-- Head -->
+
+<!-- Header -->
 	<% if(locals.usuario) { %>
 	<%- include("./partials/headerLogueado") %>
 	   <% } else { %>
 		<%- include("./partials/header") %>
 		<% } %>
-	 
-
-	<!-- Header -->
-	<!-- Banner -->
+<!-- Header -->
+<!-- Banner -->
 	<div class="banner">
 		<img src="images/banner bmw.jpg" alt="Banner de ofertas">
 	</div>
@@ -52,7 +51,7 @@
 			<% productos.forEach(element => { %>
 				<div class="col-12 col-sm-6 col-lg-3">
 					<section class="product-box">
-						<a href="/product">
+						<a href="/product/<%= element.id %>">
 							<figure class="product-box_image" style="background-image: url(images/products/autos/<%=element.foto%>)"></figure>
 							<article class="product-box_data ubuntu">
 								<h2 class="fjalla"><%= element.nombre %></h2>
