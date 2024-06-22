@@ -38,8 +38,8 @@ const productController = {
   },
   //Debe agregar un producto
   productAdd: (req,res)=>{
-    res.render("product-add", {user: req.session.user?req.session.user:null})
-    console.log(req.session.user);
+    res.render("product-add", {usuario: req.session.usuario?req.session.usuario:null})
+    console.log(req.session.usuario);
   },
   
 

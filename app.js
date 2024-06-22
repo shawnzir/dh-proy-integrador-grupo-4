@@ -23,9 +23,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'mysecret',
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   cookie: { maxAge: 24 * 60 * 60 * 1000 }
 }));
+
+app.use(function(req, res, next){
+  if(req.session.usuario !== undefined){
+    res.locals.usuario = req.session.usuario; //Estamos pasandole la informacion del usuario al res.locals, donde podemos utilizar la info en las vistas
+  }
+  return next();
+})
 
 app.use('/', indexRouter);
 app.use('/register', indexRouter)

@@ -45,6 +45,9 @@ const mainController = {
       .then(() => {
         return res.redirect('/login')
       })
+      .catch(function(err){
+        console.log(err);
+      })
   },
 
   login: (req, res) => {
@@ -75,15 +78,15 @@ const mainController = {
     },
     profile: (req, res) => {
       let productos = data.productos
-      res.render("profile", { user: req.session.user ? req.session.user : null, productos: productos })
-      console.log(req.session.user);
+      res.render("profile", { usuario: req.session.usuario ? req.session.usuario : null, productos: productos })
+      console.log(req.session.usuario);
     },
       profileEdit: (req, res) => {
-        res.render("profile-edit", { user: req.session.user })
+        res.render("profile-edit", { usuario: req.session.usuario })
       },
         searchResultes: (req, res) => {
           let productos = data.productos;
-          res.render("search-results", { user: req.session.user ? req.session.user : null, productos: productos })
+          res.render("search-results", { usuario: req.session.usuario ? req.session.usuario : null, productos: productos })
         }
   };
 
