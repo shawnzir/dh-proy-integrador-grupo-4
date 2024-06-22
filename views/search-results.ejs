@@ -1,48 +1,50 @@
 <!DOCTYPE html>
 <html lang="es">
-	<!-- Head -->
-	<%- include("./partials/head") %>
-	<!-- Head -->
-	<!-- Header -->
-	<%- include("./partials/header") %>
-	<!-- Header -->
+<!-- Head -->
+<%- include("./partials/head") %>
+<!-- Head -->
+<!-- Header -->
+<%- include("./partials/header") %>
+<!-- Header -->
 
-	
-	<!-- Novedades -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title fjalla">Buscador</h2>
-			</div>
-			<!-- Mostrar los productos -->
-			 <% if (productos.length > 0) { %>
-				
-			 
-			<% productos.forEach(producto => { %>
-				<div class="col-12 col-sm-6 col-lg-3">
-					<section class="product-box">
-						<a href="/product/<%= producto.id%>">
-							<figure class="product-box_image" style="background-image: url(images/products/autos/<%= producto.foto %>)"></figure>
-							<article class="product-box_data ubuntu">
-								<h2 class="fjalla"><%= producto.producto %></h2>
-								<p><%= producto.descripcion %></p>
-								<p>Comentarios: 3 </p>
-							</article>
-						</a>
-					</section>
-				</div>
-			<% }); %>
-			<% } else { %>
-				<div class="products-title fjalla">
-					<h2>No hay resultados para su criterio de búsqueda, intentelo nueva mente.</h2>
-				</div>
-			<% } %>
-		</div>
-	</div>
-	<!-- /Novedades -->
-	
+<!-- Novedades -->
+<div class="container products-wrapper">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="products-title fjalla">Buscador</h2>
+        </div>
+        <!-- Mostrar los productos -->
+        <% if (productos.length > 0) { %>
+            <% productos.forEach(producto => { %>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <section class="product-box">
+                        <a href="/product/<%= producto.id %>">
+                            <figure class="product-box_image" style="background-image: url('/images/products/autos/<%= producto.foto %>')">
+                            </figure>
+                            <article class="product-box_data ubuntu">
+                                <h2 class="fjalla">
+                                    <%= producto.producto %>
+                                </h2>
+                                <p>
+                                    <%= producto.descripcion %>
+                                </p>
+                                <p>Comentarios: 3</p>
+                            </article>
+                        </a>
+                    </section>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <div class="products-title fjalla">
+                <h2>No hay resultados para su criterio de búsqueda, inténtelo nuevamente.</h2>
+            </div>
+        <% } %>
+    </div>
+</div>
+<!-- /Novedades -->
 
-	<!-- Footer -->
-	<%- include("./partials/footer.ejs") %>
-	<!-- Footer -->
+<!-- Footer -->
+<%- include("./partials/footer") %>
+<!-- Footer -->
+
 </html>

@@ -60,26 +60,37 @@ const mainController = {
 
   processLogin: (req, res) => {
     console.log(req.body);
+    // Buscar el usuario que se quiere loguear
     usuarios.findOne({
       where: [
         { 
           email: req.body.email 
         }
       ]
-    })
-      .then(function (usuario) {
-        //Seteamos la session con la info del usuario
+    }).then(function (usuario) {
+        //Seteamos la session con la info del usuario si se loguea bien
         req.session.usuario = usuario;
-        //Si tildó recordame => creamos la cookie.
-        if (req.body.rememberme != undefined) {
-          res.cookie('usuarioId', usuario.id, { maxAge: 1000 * 60 * 100 })
-        }
-        return res.redirect('/');
-      })
-      .catch(function (e) {
-        console.log(e)
+        console.log(JSON.stringify(req.session.usuario, null, 4));
+        res.redirect('/');
+    })
+      .catch(function(err){
+        console.log(err);
       })
     },
+        //Si tildó recordame => creamos la cookie.
+    //     if (req.body.rememberme != undefined) {
+    //       res.cookie('usuarioId', usuario.id, { maxAge: 1000 * 60 * 100 })
+    //     }
+    //     return res.redirect('/');
+      
+    //   .catch(function (e) {
+    //     console.log(e)
+    //   })
+    // },
+
+
+
+
     profile: (req, res) => {
       let productos = data.productos
       res.render("profile", { usuario: req.session.usuario ? req.session.usuario : null, productos: productos })
