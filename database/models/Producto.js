@@ -26,6 +26,9 @@ module.exports = function(sequelize, dataTypes) {
         },
         deleted_at: {
             type: dataTypes.DATE
+        },
+        usuario_id: {
+            type: dataTypes.INTEGER
         }
 
     }

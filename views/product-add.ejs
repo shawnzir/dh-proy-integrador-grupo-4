@@ -20,18 +20,19 @@
 			<!-- Show the "ultimos" products -->
 		</div>
 		<div class="form-container ubuntu">
-			<form action="/">
+			<form action="/product/product-add" method="post">
 				<div class="campo">
-					<label for="">Imagen</label>
-					<input type="file" name="" id="">
+				<!-- Fercho tenes que hacer las validaciones de esto tambien -->
+					<label for="foto">Imagen</label>
+					<input type="text" name="foto" id="">
 				</div>
 				<div class="campo">
-					<label for="">Nombre del Producto</label>
-					<input type="text">
+					<label for="producto">Nombre del Producto</label>
+					<input type="text" name="producto">
 				</div>
 				<div class="campo">
-					<label for="">Descripción del Producto</label>
-					<textarea name="" id="" cols="30" rows="10"></textarea>
+					<label for="descripcion">Descripción del Producto</label>
+					<textarea name="descripcion" id="" cols="30" rows="10"></textarea>
 				</div>
 				<button type="submit">Agregar</button>
 			</form>
