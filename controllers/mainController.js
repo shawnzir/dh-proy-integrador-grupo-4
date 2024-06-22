@@ -1,5 +1,6 @@
 // const data = require("../db/data")
 
+const { where } = require('sequelize')
 const db = require('../database/models')
 
 const usuarios = db.Usuario // requerismos del models la tabal de  usarios
@@ -8,6 +9,8 @@ const productos = db.Producto // requerismos del models la tabal de  productos
 
 const comentarios = db.Comentario
 
+const op = db.Sequelize.Op;
+
 const bcrypt = require('bcryptjs')
 
 
@@ -15,7 +18,8 @@ const mainController = {
   index: function (req, res) {
     productos.findAll()
       .then(function (data) {
-        res.render("index", { productos: data })
+        console.log("Info del producto: ", JSON.stringify(data,null,4));
+        res.render('index', { productos: data});
         // data.forEach(element => {
         //   console.log(element.dataValues)
         // })
@@ -82,8 +86,20 @@ const mainController = {
         res.render("profile-edit", { user: req.session.user })
       },
         searchResultes: (req, res) => {
-          let productos = data.productos;
-          res.render("search-results", { user: req.session.user ? req.session.user : null, productos: productos })
+          const buscador = req.query.search
+          const filtarabusqueda = {where: 
+            { [op.or]: 
+              [ {producto: {[op.like]: "%" + `${buscador}` + "%"}},
+              {descripcion: {[op.like]: "%" + `${buscador}` + "%"}} ]  }};
+
+          productos.findAll(filtarabusqueda)
+          .then(resultados => {
+            
+            console.log("Info de la busqueda: ", JSON.stringify(resultados,null,4));
+            return res.render('search-results', {productos: resultados}) }) 
+
+            
+            
         }
   };
 
