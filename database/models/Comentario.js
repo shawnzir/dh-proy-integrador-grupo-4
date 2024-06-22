@@ -1,5 +1,4 @@
 const { ForeignKeyConstraintError } = require("sequelize");
-const data = require("../../db/data");
 
 module.exports = function (sequelize, dataTypes) {
 

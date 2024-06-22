@@ -1,18 +1,15 @@
-// const data = require("../db/data")
-
 const { where } = require('sequelize')
 const db = require('../database/models')
 
-const usuarios = db.Usuario // requerismos del models la tabal de  usarios
+const usuarios = db.Usuario // requerimos del models la tabla de  usuarios
 
-const productos = db.Producto // requerismos del models la tabal de  productos 
+const productos = db.Producto // requerimos del models la tabla de  productos 
 
-const comentarios = db.Comentario
+const comentarios = db.Comentario // requerimos del models la tabla de comentarios
 
-const op = db.Sequelize.Op;
+const op = db.Sequelize.Op; // op sirve para buscar informacion en la base de datos
 
-const bcrypt = require('bcryptjs')
-
+const bcrypt = require('bcryptjs') // encriptar contrasenias
 
 const mainController = {
   index: function (req, res) {
