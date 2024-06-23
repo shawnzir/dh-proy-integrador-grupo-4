@@ -55,12 +55,14 @@ const productController = {
   addcomentario: (req,res)=>{
     const comentario = {
       comentario: req.body.comentario,
-      //producto_id: req.params.producto_id, no me tare el id del producto 
-      usuario_id: req.session.usuario.id
+      usuario_id: req.session.usuario.id,
+      producto_id: req.params.id
+      
     };
     comentarios.create(comentario)
       .then(() => {
-        return res.redirect('/product/${id}')
+        id = req.params.id
+        return res.redirect(`/product/${id}`)
       })
       .catch(function(err){
         console.log(err);
