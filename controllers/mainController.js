@@ -9,11 +9,11 @@ const bcrypt = require('bcryptjs') // encriptar contrasenias
 const mainController = {
   index: function (req, res) {
     productos.findAll({
-      include:[{association: 'usuario'},{association: 'comentarios' }]
+      include: [{ association: 'usuario' }, { association: 'comentarios' }]
     })
       .then(function (data) {
-        console.log("Info del producto: ", JSON.stringify(data,null,4));
-        res.render('index', { productos: data});
+        // console.log("Info del producto: ", JSON.stringify(data, null, 4));
+        res.render('index', { productos: data });
       })
       .catch(function (err) {
         console.log(err);
@@ -26,7 +26,7 @@ const mainController = {
     const usuario = {
       email: req.body.email,
       usuario: req.body.usuario,
-      password: bcrypt.hashSync(req.body.password, 10),
+      password: bcrypt.hashSync(req.body.contraseña, 10),
       fecha: req.body.fecha,
       dni: req.body.dni,
       foto: req.body.foto
@@ -35,7 +35,7 @@ const mainController = {
       .then(() => {
         return res.redirect('/login')
       })
-      .catch(function(err){
+      .catch(function (err) {
         console.log(err);
       })
   },
@@ -43,65 +43,68 @@ const mainController = {
     res.render("login", { error: "" })
   },
   processLogin: (req, res) => {
-    console.log(req.body);
+    console.log('Data: ',req.body);
     // Buscar el usuario que se quiere loguear
     usuarios.findOne({
-      where: [
-        { 
-          email: req.body.email 
+      where: [{ email: req.body.email }],
+    })
+      .then(function (usuario) {
+        const encryptedPassword = usuario.password;
+        const check = bcrypt.compareSync(req.body.contraseña, encryptedPassword);
+        console.log('Devuelve algo?',check);
+        console.log('contra encriptada', encryptedPassword);
+        console.log('contra normal', req.body.contraseña);
+
+        if (check) {
+          //Seteamos la session con la info del usuario si se loguea bien
+          req.session.usuario = usuario;
+          // Si el usuario clickeo el checkbox => seteamos cookie
+          if (req.body.recordar !== undefined) {
+            res.cookie('usuarioId', usuario.id, { maxAge: 1000 * 60 * 5 });
+          }
+        } else {
+          res.redirect('/login');
         }
-      ]
-    }).then(function (usuario) {
-        //Seteamos la session con la info del usuario si se loguea bien
-        req.session.usuario = usuario;
-        if (req.body.recordar !== undefined) {
-          res.cookie('usuarioId', usuario.id, {maxAge: 1000 * 60 * 5});
-        }
-        res.redirect('/');
+        res.redirect('/')
       })
-      .catch(function(err){
+      .catch(function (err) {
         console.log(err);
       })
-    },
-    //Si tildó recordame => creamos la cookie.
-    //     if (req.body.rememberme != undefined) {
-    //       res.cookie('usuarioId', usuario.id, { maxAge: 1000 * 60 * 100 })
-    //     }
-    //     return res.redirect('/');
-      
-    //   .catch(function (e) {
-    //     console.log(e)
-    //   })
-    // },
-    logout: function(req, res) {
-      //Destruir la session
-      req.session.destroy()
+  },
+  logout: function (req, res) {
+    //Destruir la session
+    req.session.destroy()
 
-      //Destruir la cookie
-      res.clearCookie('usuarioId')
+    //Destruir la cookie
+    res.clearCookie('usuarioId')
 
-      //Redireccionar a Home()
-      res.redirect('/')
-    },
-    profile: (req, res) => {
-      let productos = data.productos //data y no db hay que arreglar, no esta definido la data
-      res.render("profile", { usuario: req.session.usuario ? req.session.usuario : null, productos: productos })
-      console.log(req.session.usuario);
-    },
-    profileEdit: (req, res) => {
-      res.render("profile-edit", { usuario: req.session.usuario })
-    },
-    searchResultes: (req, res) => {
-      const buscador = req.query.search
-      const filtarabusqueda = {where: { [op.or]: [ 
-        {producto: {[op.like]: "%" + `${buscador}` + "%"}},
-        {descripcion: {[op.like]: "%" + `${buscador}` + "%"}} ]}};
-        
-        productos.findAll(filtarabusqueda)
-        .then(resultados => {
-        console.log("Info de la busqueda: ", JSON.stringify(resultados,null,4));
-        return res.render('search-results', {productos: resultados}) })
-    }
+    //Redireccionar a Home()
+    res.redirect('/')
+  },
+  profile: (req, res) => {
+    let productos = data.productos //data y no db hay que arreglar, no esta definido la data
+    res.render("profile", { usuario: req.session.usuario ? req.session.usuario : null, productos: productos })
+    // console.log(req.session.usuario);
+  },
+  profileEdit: (req, res) => {
+    res.render("profile-edit", { usuario: req.session.usuario })
+  },
+  searchResultes: (req, res) => {
+    const buscador = req.query.search
+    const filtarabusqueda = {
+      where: {
+        [op.or]: [
+          { producto: { [op.like]: "%" + `${buscador}` + "%" } },
+          { descripcion: { [op.like]: "%" + `${buscador}` + "%" } }]
+      }
+    };
+
+    productos.findAll(filtarabusqueda)
+      .then(resultados => {
+        // console.log("Info de la busqueda: ", JSON.stringify(resultados, null, 4));
+        return res.render('search-results', { productos: resultados })
+      })
+  }
 };
 
-  module.exports = mainController
+module.exports = mainController
