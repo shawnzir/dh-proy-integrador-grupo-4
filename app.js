@@ -34,6 +34,8 @@ app.use(function(req, res, next){
   return next();
 })
 
+
+
 app.use('/', indexRouter);
 app.use('/register', indexRouter)
 app.use('/login', indexRouter)

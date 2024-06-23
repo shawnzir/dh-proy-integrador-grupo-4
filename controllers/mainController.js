@@ -54,9 +54,11 @@ const mainController = {
     }).then(function (usuario) {
         //Seteamos la session con la info del usuario si se loguea bien
         req.session.usuario = usuario;
-        console.log(JSON.stringify(req.session.usuario, null, 4));
+        if (req.body.recordar !== undefined) {
+          res.cookie('usuarioId', usuario.id, {maxAge: 1000 * 60 * 5});
+        }
         res.redirect('/');
-    })
+      })
       .catch(function(err){
         console.log(err);
       })
@@ -72,7 +74,12 @@ const mainController = {
     //   })
     // },
     logout: function(req, res) {
-      
+      //Destruir la session
+      req.session.destroy()
+      //Destruir la cookie
+
+      //Redireccionar a Home()
+      res.redirect('/')
     },
     profile: (req, res) => {
       let productos = data.productos //data y no db hay que arreglar, no esta definido la data
