@@ -8,7 +8,9 @@ const bcrypt = require('bcryptjs') // encriptar contrasenias
 
 const mainController = {
   index: function (req, res) {
-    productos.findAll()
+    productos.findAll({
+      include:[{association: 'usuario'},{association: 'comentarios' }]
+    })
       .then(function (data) {
         console.log("Info del producto: ", JSON.stringify(data,null,4));
         res.render('index', { productos: data});

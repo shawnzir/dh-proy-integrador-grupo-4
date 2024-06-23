@@ -32,7 +32,7 @@
 							<article class="product-box_data">
 								<h2 class="fjalla"><%= element.producto %></h2>
 								<p class="ubuntu"><%= element.descripcion %></p>
-								<p class="ubuntu">Comentarios: 3 </p>
+								<p class="ubuntu">Comentarios: <%= element.comentarios.length  %> </p>
 							</article>
 						</a>
 					</section>
@@ -56,7 +56,7 @@
 							<article class="product-box_data ubuntu">
 								<h2 class="fjalla"><%= element.nombre %></h2>
 								<p><%= element.descripcion %></p>
-								<p>Comentarios: 3 </p>
+								<p>Comentarios: <%= element.comentarios.length  %>  </p>
 							</article>
 						</a>
 					</section>

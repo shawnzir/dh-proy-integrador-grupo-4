@@ -33,33 +33,54 @@
 							</p>
 						</article>
 
+						
+
+
 						<div class="col-12 col-lg-4">
 							<section class="comments">
 								
 
 									<article>
-										<img src="/images/users/pibe gris.jpg" alt="">
+										
+										
+											
+		
+										<h3>Comentarios:</h3>
 
 										<div class="data">
 											<p class="user">
-												<strong> <a href="/profile">
-														
-													</a> </strong>
-												
+												 <a href="/profile">
+													<% for (let i = 0; i < producto.comentarios.length; i++) { %>
+														<strong><p><%= producto.comentarios[i].usuario.usuario  %></p></strong>	
+														<p><%= producto.comentarios[i].comentario %></p>
+													<% } %>
+													</a> 
+													
 											</p>
+
+											
 										</div>
 
 									</article>
 									
 							</section>
 
-							<form action="/product" method="get" class="form">
-								<input type="text" value="" placeholder="Agregar comentario" required>
+							<% if(locals.usuario) { %>
+
+							<form action="/product/<%= producto.id %>" method="post" class="form">
+								<label for="comentario" ></label>
+								<input type="text" name="comentario" placeholder="agregar comentario">
 								<button type="submit" class="buy-now-button ">AGREGAR COMENTARIO</button>
 							</form>
-
+							<% } else { %>
+							<h3>Debes estar logueado para comentar</h3>
+							<% } %>
+							
+							<h2>  <a href=""> Publicado por <%= producto.usuario.usuario %></a>   </h2>
 						</div>
+						
 					</div>
+					
 				</div>
 			</div>
 			<!-- /product detail -->

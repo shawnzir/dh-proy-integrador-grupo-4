@@ -13,7 +13,7 @@ const productController = {
     const id = req.params.id
     console.log("ID recibido: ", id);
     productos.findByPk(id, {
-      include:[{association: 'usuario'},{association: 'comentarios'}]
+      include:[{association: 'usuario'},{association: 'comentarios', include:[{association: 'usuario'}] }]
     })
     .then(function(autos) {
       if (!autos) {
@@ -52,7 +52,20 @@ const productController = {
         console.log(err);
       })
   },
-  
+  addcomentario: (req,res)=>{
+    const comentario = {
+      comentario: req.body.comentario,
+      //producto_id: req.params.producto_id, no me tare el id del producto 
+      usuario_id: req.session.usuario.id
+    };
+    comentarios.create(comentario)
+      .then(() => {
+        return res.redirect('/product/${id}')
+      })
+      .catch(function(err){
+        console.log(err);
+      })
+  },
 
 }
 
