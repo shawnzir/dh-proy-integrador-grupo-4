@@ -76,7 +76,9 @@ const mainController = {
     logout: function(req, res) {
       //Destruir la session
       req.session.destroy()
+
       //Destruir la cookie
+      res.clearCookie('usuarioId')
 
       //Redireccionar a Home()
       res.redirect('/')
@@ -86,26 +88,20 @@ const mainController = {
       res.render("profile", { usuario: req.session.usuario ? req.session.usuario : null, productos: productos })
       console.log(req.session.usuario);
     },
-      profileEdit: (req, res) => {
-        res.render("profile-edit", { usuario: req.session.usuario })
-      },
-        searchResultes: (req, res) => {
-          const buscador = req.query.search
-          const filtarabusqueda = {where: 
-            { 
-              [op.or]: 
-              [ {producto: {[op.like]: "%" + `${buscador}` + "%"}},
-              {descripcion: {[op.like]: "%" + `${buscador}` + "%"}} 
-            ]  
-            }
-            };
-
-          productos.findAll(filtarabusqueda)
-          .then(resultados => {
-            
-            console.log("Info de la busqueda: ", JSON.stringify(resultados,null,4));
-            return res.render('search-results', {productos: resultados}) })
-        }
-  };
+    profileEdit: (req, res) => {
+      res.render("profile-edit", { usuario: req.session.usuario })
+    },
+    searchResultes: (req, res) => {
+      const buscador = req.query.search
+      const filtarabusqueda = {where: { [op.or]: [ 
+        {producto: {[op.like]: "%" + `${buscador}` + "%"}},
+        {descripcion: {[op.like]: "%" + `${buscador}` + "%"}} ]}};
+        
+        productos.findAll(filtarabusqueda)
+        .then(resultados => {
+        console.log("Info de la busqueda: ", JSON.stringify(resultados,null,4));
+        return res.render('search-results', {productos: resultados}) })
+    }
+};
 
   module.exports = mainController

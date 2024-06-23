@@ -6,7 +6,8 @@ var logger = require('morgan');
 const session = require('express-session');
 
 const indexRouter = require('./routes/index');
-const productRouter = require("./routes/product")
+const productRouter = require("./routes/product");
+const db = require('./database/models');
 
 var app = express();
 
@@ -34,7 +35,21 @@ app.use(function(req, res, next){
   return next();
 })
 
+// Middlewares
 
+app.use(function(req, res, next) {
+  if (req.session.usuario === undefined && req.cookies.usuarioId !== undefined) {
+    let cookieId = req.cookies.usuarioId;
+    db.Usuario.findByPk(cookieId)
+    .then(function(usuario){
+      req.session.usuario = usuario;
+      res.locals.usuario = req.session.usuario;
+    }).catch(function(e){
+      console.log(e);
+    })
+  }
+  return next();
+})
 
 app.use('/', indexRouter);
 app.use('/register', indexRouter)
