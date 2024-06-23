@@ -1,4 +1,4 @@
-const { Association } = require('sequelize')
+const { Association, where } = require('sequelize')
 const db = require('../database/models')
 
 // const db = require('../db/data')
@@ -19,6 +19,7 @@ const productController = {
       if (!autos) {
         res.status(404).send("Producto no encontrado")
         console.log("Info del producto: ", autos);
+        
       }
       else{
         console.log("Info del producto: ", JSON.stringify(autos,null,4));
@@ -68,6 +69,17 @@ const productController = {
         console.log(err);
       })
   },
+  eliminar: (req,res)=>{
+    
+    comentarios.destroy({ where: [{producto_id : req.params.id}]}),
+    productos.destroy({ where: [{id : req.params.id}]})
+      .then(() => {
+        return res.redirect(`/`)
+      })
+      .catch(function(err){
+        console.log(err);
+      })
+    }
 
 }
 

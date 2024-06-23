@@ -67,7 +67,7 @@
 
 							<% if(locals.usuario) { %>
 
-							<form action="/product/<%= producto.id %>" method="post" class="form">
+							<form action="/product/<%= producto.id %>" method="POST" class="form">
 								<label for="comentario" ></label>
 								<input type="text" name="comentario" placeholder="agregar comentario">
 								<button type="submit" class="buy-now-button ">AGREGAR COMENTARIO</button>
@@ -76,7 +76,19 @@
 							<h3>Debes estar logueado para comentar</h3>
 							<% } %>
 							
-							<h2>  <a href=""> Publicado por <%= producto.usuario.usuario %></a>   </h2>
+							<% if(locals.usuario) { %> 
+
+								<form action="/product/eliminar/<%= producto.id %>" method="POST" class="form">
+									<button type="submit" name="eliminar" class=" ">Eliminar Publicasion</button>
+								</form>
+								<% } else { %>
+									
+									<h2>  <a href=""> Publicado por <%= producto.usuario.usuario %></a>   </h2>
+								<% } %>
+							
+							
+							
+							
 						</div>
 						
 					</div>
