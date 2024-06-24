@@ -113,23 +113,47 @@ const productController = {
     })
   },
   update: (req,res)=>{
-    productos.findByPk(id, {
-      include:[{association: 'usuario'},{association: 'comentarios', include:[{association: 'usuario'}] }]
+    let usuario = req.session.usuario
+    let errores = validationResult(req)
+    const id = req.params.id
+    productos.findByPk(id)
+    .then(function(auto) {
+      if(auto.usuario_id == usuario.id){
+        if(!errores.isEmpty()){
+          productos.findByPk(id)
+          .then(function(auto) {
+            if (!auto) {
+              return res.status(404).send('No se encontro el auto')
+            } else {
+              return res.render("product-edit", {auto: auto, error: errores.mapped()})
+            }
+          })
+          .catch(function(e){
+            console.log(e);
+          })
+        }
+        else{
+          productos.update({
+            foto: req.body.foto,
+            producto: req.body.producto,
+            descripcion: req.body.descripcion,
+          },{
+            where: {id: req.params.id}
+          }).then(value=>{
+            console.log("Valor: ",value);
+            res.redirect(`/product/${req.params.id}`)
+          }).catch(err=>{
+            console.log(err);
+          })
+        }
+      }else{
+        res.send("Credenciales incorrectas para editar producto")
+      }
     })
-      const producto = {
-        foto: req.body.foto,
-        producto: req.body.producto,
-        descripcion: req.body.descripcion,
-      };
-      productos.update(producto)
-        .then((value) => {
-          res.redirect("/product/" + value.dataValues.id)
-        })
-        .catch(function(err){
-          console.log(err);
-        })
-    
-    },
+    .catch(function(e){
+      console.log(e);
+    })
+  },
   
   eliminar: (req,res)=>{
     
