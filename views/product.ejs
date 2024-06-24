@@ -79,10 +79,10 @@
 							<h3>Debes estar logueado para comentar</h3>
 							<% } %>
 							
-							<% if(locals.usuario) { %> 
-
+							<% if(locals.usuario.id == producto.usuario_id) { %> 
+								<h2>  <a href=""> Publicado por <%= producto.usuario.usuario %></a>   </h2>
 								<form action="/product/eliminar/<%= producto.id %>" method="POST" class="form">
-									<button type="submit" name="eliminar" class=" ">Eliminar Publicasion</button>
+									<button type="submit" name="eliminar" class=" ">Eliminar Publicacion</button>
 								</form>
 								<% } else { %>
 									
