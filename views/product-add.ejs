@@ -8,7 +8,7 @@
 
 <body>
 	<!-- Header -->
-	<%- include("./partials/headerLogueado") %>
+	<%- include("./partials/headerLogueado.ejs") %>
 	<!-- /Header -->
 
 	<!-- Novedades -->
@@ -24,15 +24,24 @@
 				<div class="campo">
 				<!-- Fercho tenes que hacer las validaciones de esto tambien -->
 					<label for="foto">Imagen</label>
-					<input type="text" name="foto" id="">
+					<input type="text" name="foto" id="" value="<%= locals.old ? old.foto : "" %>">
+					<% if (locals.error && error.foto) { %>
+						<p style="color: red;"><%= error.foto.msg %></p>
+					<% } %>
 				</div>
 				<div class="campo">
 					<label for="producto">Nombre del Producto</label>
-					<input type="text" name="producto">
+					<input type="text" name="producto" value="<%= locals.old ? old.producto : "" %>">
+					<% if (locals.error && error.producto) { %>
+						<p style="color: red;"><%= error.producto.msg %></p>
+					<% } %>
 				</div>
 				<div class="campo">
 					<label for="descripcion">Descripción del Producto</label>
-					<textarea name="descripcion" id="" cols="30" rows="10"></textarea>
+					<textarea name="descripcion" id="" cols="30" rows="10"><%= locals.old ? old.descripcion : "" %></textarea>
+					<% if (locals.error && error.descripcion) { %>
+						<p style="color: red;"><%= error.descripcion.msg %></p>
+					<% } %>
 				</div>
 				<button type="submit">Agregar</button>
 			</form>

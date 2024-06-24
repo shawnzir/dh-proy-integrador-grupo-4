@@ -1,5 +1,6 @@
 const { Association, where } = require('sequelize')
 const db = require('../database/models')
+const {validationResult} = require("express-validator");
 
 // const db = require('../db/data')
 
@@ -39,35 +40,61 @@ const productController = {
   },
 
   productAddinfo: (req,res)=>{
-    const producto = {
-      foto: req.body.foto,
-      producto: req.body.producto,
-      descripcion: req.body.descripcion,
-      usuario_id: req.session.usuario.id
-    };
-    db.Producto.create(producto)
-      .then(() => {
-        return res.redirect('/')
-      })
-      .catch(function(err){
-        console.log(err);
-      })
+    let errores = validationResult(req)
+    console.log(errores);
+    if(!errores.isEmpty()){
+      res.render("product-add", {error: errores.mapped(), old: req.body, usuario: req.session.usuario?req.session.usuario:null})
+    }else{
+      const producto = {
+        foto: req.body.foto,
+        producto: req.body.producto,
+        descripcion: req.body.descripcion,
+        usuario_id: req.session.usuario.id
+      };
+      db.Producto.create(producto)
+        .then((value) => {
+          res.redirect("/product/" + value.dataValues.id)
+        })
+        .catch(function(err){
+          console.log(err);
+        })
+    }
   },
   addcomentario: (req,res)=>{
-    const comentario = {
-      comentario: req.body.comentario,
-      usuario_id: req.session.usuario.id,
-      producto_id: req.params.id
-      
-    };
-    comentarios.create(comentario)
-      .then(() => {
-        id = req.params.id
-        return res.redirect(`/product/${id}`)
+    let errores = validationResult(req);
+    console.log("Errores: ", errores);
+    if(!errores.isEmpty()){
+      const id = req.params.id
+      productos.findByPk(id, {
+        include:[{association: 'usuario'},{association: 'comentarios', include:[{association: 'usuario'}] }]
       })
-      .catch(function(err){
+      .then(function(autos) {
+        if (!autos) {
+          res.status(404).send("Producto no encontrado")
+        }
+        else{
+          res.render('product', { producto: autos, error: errores.mapped()}); 
+        }
+      })
+      .catch(function(err) {
         console.log(err);
       })
+    }else{
+      const comentario = {
+        comentario: req.body.comentario,
+        usuario_id: req.session.usuario.id,
+        producto_id: req.params.id
+        
+      };
+      comentarios.create(comentario)
+        .then(() => {
+          id = req.params.id
+          return res.redirect(`/product/${id}`)
+        })
+        .catch(function(err){
+          console.log(err);
+        })
+    }
   },
   eliminar: (req,res)=>{
     

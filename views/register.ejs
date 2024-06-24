@@ -22,14 +22,23 @@
 				<div class="campo">
 					<label for="email">Email</label>
 					<input type="email" placeholder="Ingresar email" name="email">
+					<% if (locals.error && error.email) { %>
+						<p style="color: red;"><%= error.email.msg %></p>
+					<% } %>
 				</div>
 				<div class="campo">
 					<label for="usuario">Usuario</label>
 					<input type="text" name="usuario">
+					<% if (locals.error && error.usuario) { %>
+						<p style="color: red;"><%= error.usuario.msg %></p>
+					<% } %>
 				</div>
 				<div class="campo ">
 					<label for="contraseña">Contraseña</label>
 					<input type="password" name="contraseña">
+					<% if (locals.error && error.contraseña) { %>
+						<p style="color: red;"><%= error.contraseña.msg %></p>
+					<% } %>
 				</div>
 				<div class="campo">
 					<label for="fecha">Fecha de Nacimiento</label>
@@ -38,10 +47,9 @@
 				<div class="campo">
 					<label for="dni">Número de Documento</label>
 					<input type="number" name="dni" id="">
-				</div>
-				<div class="campo">
-					<label for="foto">Foto de Perfil</label>
-					<input type="text" name="foto">
+					<% if (locals.error && error.dni) { %>
+						<p style="color: red;"><%= error.dni.msg %></p>
+					<% } %>
 				</div>
 				<button type="submit">Registrarme</button>
 			</form>

@@ -24,20 +24,22 @@
 			<form action="/login" method="POST">
 				<div class="campo">
 					<label for="email">Email</label>
-					<input type="email" placeholder="Ingresar email" name="email">
+					<input type="email" placeholder="Ingresar email" name="email" value="<%= locals && locals.old ? old.email:"" %>">
+					<% if (error.email) { %>
+						<p style="color: red;"><%= error.email.msg %></p>
+					<% } %>
 				</div>
 				<div class="campo ">
 					<label for="contraseña">Contraseña</label>
 					<input type="password" placeholder="Ingresar contraseña" name="contraseña">
+					<% if (error.contraseña) { %>
+						<p style="color: red;"><%= error.contraseña.msg %></p>
+					<% } %>
 				</div>
 				<div class="campo">
 					<label for="recordar">Recordarme</label>
 					<input type="checkbox" name="recordar" id="">
 				</div>
-				<% if (error) { %>
-					<p style="color: red;"><%= error %></p>
-				<% } %>
-				 
 				<button type="submit">Ingresar</button>
 			</form>
 		</div>

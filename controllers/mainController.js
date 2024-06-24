@@ -5,6 +5,7 @@ const productos = db.Producto // requerimos del models la tabla de  productos
 const comentarios = db.Comentario // requerimos del models la tabla de comentarios
 const op = db.Sequelize.Op; // op sirve para buscar informacion en la base de datos
 const bcrypt = require('bcryptjs') // encriptar contrasenias
+const {validationResult} = require("express-validator");
 
 const mainController = {
   index: function (req, res) {
@@ -23,53 +24,39 @@ const mainController = {
     res.render('register', { title: 'Register' });
   },
   info: function (req, res) {
-    const usuario = {
-      email: req.body.email,
-      usuario: req.body.usuario,
-      password: bcrypt.hashSync(req.body.contraseña, 10),
-      fecha: req.body.fecha,
-      dni: req.body.dni,
-      foto: req.body.foto
-    };
-    db.Usuario.create(usuario)
-      .then(() => {
-        return res.redirect('/login')
-      })
-      .catch(function (err) {
-        console.log(err);
-      })
+    let errores = validationResult(req)
+    console.log(errores);
+    if(!errores.isEmpty()){
+      res.render("register", {error: errores.mapped()})
+    }else{
+      const usuario = {
+        email: req.body.email,
+        usuario: req.body.usuario,
+        password: bcrypt.hashSync(req.body.contraseña, 10),
+        fecha: req.body.fecha,
+        dni: req.body.dni,
+        foto: req.body.foto
+      };
+      db.Usuario.create(usuario)
+        .then(() => {
+          return res.redirect('/login')
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
+    }
   },
   login: (req, res) => {
     res.render("login", { error: "" })
   },
   processLogin: (req, res) => {
-    console.log('Data: ',req.body);
-    // Buscar el usuario que se quiere loguear
-    usuarios.findOne({
-      where: [{ email: req.body.email }],
-    })
-      .then(function (usuario) {
-        const encryptedPassword = usuario.password;
-        const check = bcrypt.compareSync(req.body.contraseña, encryptedPassword);
-        console.log('Devuelve algo?',check);
-        console.log('contra encriptada', encryptedPassword);
-        console.log('contra normal', req.body.contraseña);
-
-        if (check) {
-          //Seteamos la session con la info del usuario si se loguea bien
-          req.session.usuario = usuario;
-          // Si el usuario clickeo el checkbox => seteamos cookie
-          if (req.body.recordar !== undefined) {
-            res.cookie('usuarioId', usuario.id, { maxAge: 1000 * 60 * 5 });
-          }
-        } else {
-          res.redirect('/login');
-        }
-        res.redirect('/')
-      })
-      .catch(function (err) {
-        console.log(err);
-      })
+    let errores = validationResult(req)
+    console.log("Errores: ", errores);
+    if(!errores.isEmpty()){
+      res.render("login", {error: errores.mapped(), old: req.body})
+    }else{
+      res.redirect("/")
+    }
   },
   logout: function (req, res) {
     //Destruir la session

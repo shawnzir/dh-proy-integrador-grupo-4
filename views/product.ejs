@@ -70,6 +70,9 @@
 							<form action="/product/<%= producto.id %>" method="POST" class="form">
 								<label for="comentario" ></label>
 								<input type="text" name="comentario" placeholder="agregar comentario">
+								<% if (locals.error && error.comentario) { %>
+									<p style="color: red;"><%= error.comentario.msg %></p>
+								<% } %>
 								<button type="submit" class="buy-now-button ">AGREGAR COMENTARIO</button>
 							</form>
 							<% } else { %>
