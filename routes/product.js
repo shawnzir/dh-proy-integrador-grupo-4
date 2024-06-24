@@ -16,7 +16,7 @@ router.get('/product-edit/:id', productController.edit)
 router.post("/product-add", productValidator, productController.productAddinfo)
 router.post('/:id', comentarioValidator, productController.addcomentario)
 router.post('/eliminar/:id', productController.eliminar)
-router.post('/product-edit/:id', productController.update)
+router.post('/product-edit/:id',productValidator, productController.update)
 
 
 module.exports = router;

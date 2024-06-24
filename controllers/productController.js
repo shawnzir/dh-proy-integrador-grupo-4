@@ -98,12 +98,9 @@ const productController = {
   },
   edit: function(req, res) {
     const id = req.params.id
-    filtro = {
-      include: [
-        {association: 'usuario'}
-      ]
-    }
-    productos.findByPk(id, filtro)
+    
+    
+    productos.findByPk(id)
     .then(function(auto) {
       if (!auto) {
         return res.status(404).send('No se encontro el auto')
@@ -115,9 +112,25 @@ const productController = {
       console.log(e);
     })
   },
-  update: function(req, res) {
+  update: (req,res)=>{
+    productos.findByPk(id, {
+      include:[{association: 'usuario'},{association: 'comentarios', include:[{association: 'usuario'}] }]
+    })
+      const producto = {
+        foto: req.body.foto,
+        producto: req.body.producto,
+        descripcion: req.body.descripcion,
+      };
+      productos.update(producto)
+        .then((value) => {
+          res.redirect("/product/" + value.dataValues.id)
+        })
+        .catch(function(err){
+          console.log(err);
+        })
     
-  },
+    },
+  
   eliminar: (req,res)=>{
     
     comentarios.destroy({ where: [{producto_id : req.params.id}]}),
@@ -133,3 +146,6 @@ const productController = {
 }
 
 module.exports = productController
+
+
+

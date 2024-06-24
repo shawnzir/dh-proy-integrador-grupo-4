@@ -15,7 +15,7 @@
 				<div class="row">
 					<div class="img-container offset-3 col-2">
 							<% if(user.foto){ %>
-								<img src="images/users/<%= user.foto %>" alt="foto de perfil" class="foto-perfil">
+								<img src="images/users/pibe gris.jpg" alt="foto de perfil" class="foto-perfil">
 							<% }else{ %>
 								<img src="images/users/default-image.png" alt="foto de perfil" class="foto-perfil">
 							<% } %>
@@ -59,14 +59,16 @@
 					</div>
 					<% for(let i = 0; i < productos.length; i++) { %>
 						<div class="col-12 col-sm-6 col-lg-3 ubuntu">
+							
 							<section class="product-box">
-								<a href="/product">
+								<a href="/product/<%= productos[i].id  %>">
 									<figure class="product-box_image">
-										<img src="<%= productos[i].foto%>" alt="<%= productos[i].nombre %>">
+										<figure class="product-box_image" style="background-image: url(images/products/autos/<%=productos[i].foto%>)"></figure>
 									</figure>
+									
 									<article class="product-box_data ">
 										<h2>
-											<%= productos[i].nombre %>
+											<%= productos[i].producto %>
 										</h2>
 										<p>
 											<%= productos[i].descripcion %>
