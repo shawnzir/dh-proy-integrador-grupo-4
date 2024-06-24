@@ -82,13 +82,13 @@
 							<% } %>
 							
 							<% if(locals.usuario && locals.usuario.id == producto.usuario_id) { %> 
-								<h2>  <a href=""> Publicado por <%= producto.usuario.usuario %></a>   </h2>
+								<h2>  <a href="/profile"> Publicado por <%= producto.usuario.usuario %></a>   </h2>
 								<form action="/product/eliminar/<%= producto.id %>" method="POST" class="form">
 									<button type="submit" name="eliminar" class=" ">Eliminar Publicacion</button>
 								</form>
 								<% } else { %>
 									
-									<h2>  <a href=""> Publicado por <%= producto.usuario.usuario %></a>   </h2>
+									<h2>  <a href="/profile"> Publicado por <%= producto.usuario.usuario %></a>   </h2>
 								<% } %>
 							
 							

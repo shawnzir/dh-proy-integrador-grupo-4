@@ -10,6 +10,7 @@ const {validationResult} = require("express-validator");
 const mainController = {
   index: function (req, res) {
     productos.findAll({
+      order: [['created_at','DESC']],
       include: [{ association: 'usuario' }, { association: 'comentarios' }]
     })
       .then(function (data) {
@@ -77,6 +78,7 @@ const mainController = {
     let user = req.session.usuario
     if(user){
       productos.findAll({
+        order: [['created_at','DESC']],
         where: [{usuario_id: user.id}],
         include: [{ association: 'comentarios' }]
       })
