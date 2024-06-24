@@ -154,7 +154,6 @@ const productController = {
       console.log(e);
     })
   },
-  
   eliminar: (req,res)=>{
     
     comentarios.destroy({ where: [{producto_id : req.params.id}]}),
