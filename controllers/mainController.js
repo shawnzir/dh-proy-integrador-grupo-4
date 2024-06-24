@@ -65,12 +65,10 @@ const mainController = {
     }
   },
   logout: function (req, res) {
-    let user = req.session.usuario
-    //Destruir la cookie
-    res.clearCookie(user.id)
-    
     //Destruir la session
     req.session.destroy()
+    //Destruir la cookie
+    res.clearCookie('usuarioId')
 
     //Redireccionar a Home()
     res.redirect('/')
