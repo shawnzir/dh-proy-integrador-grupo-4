@@ -4,6 +4,7 @@ const mainController = require("../controllers/mainController");
 let {body} = require("express-validator")
 let loginValidator = require("../middlewares/loginValidator")
 let registerValidator = require("../middlewares/registerValidator")
+let profileValidator = require("../middlewares/profileValidator")
 
 /* GET home page. */
 router.get('/', mainController.index);
