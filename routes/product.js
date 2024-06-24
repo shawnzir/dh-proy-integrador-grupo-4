@@ -14,6 +14,6 @@ router.get("/product-add", productController.productAdd)
 router.get('/:id', productController.product)
 router.post("/product-add", productValidator, productController.productAddinfo)
 router.post('/:id', comentarioValidator, productController.addcomentario)
-router.post('/eliminar/:id', productController.eliminar )
+router.post('/eliminar/:id', productController.eliminar)
 
 module.exports = router;

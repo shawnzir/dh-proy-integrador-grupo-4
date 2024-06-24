@@ -10,6 +10,7 @@ let profileValidator = require("../middlewares/profileValidator")
 router.get('/', mainController.index);
 router.get("/profile", mainController.profile);
 router.get("/profile-edit", mainController.profileEdit);
+router.post("/process-profile-edit", profileValidator, mainController.processProfileEdit)
 router.get("/search-results", mainController.searchResultes);
 router.get('/register', mainController.register);
 router.get('/login', mainController.login);

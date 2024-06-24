@@ -20,13 +20,8 @@ module.exports=[
         console.log("value: ",value);
         if(result){
           req.session.usuario = usuario;
-          // Si el usuario clickeo el checkbox => seteamos cookie
-          if (req.body.recordar !== undefined) {
-            res.cookie('usuarioId', usuario.id, { maxAge: 1000 * 60 * 5 });
-          }
-          console.log("posta 2");
+          console.log(req.body);
         }else {
-          console.log("posta 1");
           return Promise.reject()
         }
       })

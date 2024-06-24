@@ -19,30 +19,42 @@
 			</div>
 		</div>
 		<div class="form-container ubuntu">
-			<form action="/">
+			<form action="/process-profile-edit" method="POST">
 				<div class="campo">
 					<label for="usuario">Email</label>
-					<input type="email" placeholder="Ingresar email" name="email">
+					<input type="email" placeholder="Ingresar email" name="email" value="<%= usuario?usuario.email:"" %>">
+					<% if (locals.error && error.email) { %>
+						<p style="color: red;"><%= error.email.msg %></p>
+					<% } %>
 				</div>
 				<div class="campo">
 					<label for="">Usuario</label>
-					<input type="text" name="usuario">
+					<input type="text" name="usuario" value="<%= usuario?usuario.usuario:"" %>">
+					<% if (locals.error && error.usuario) { %>
+						<p style="color: red;"><%= error.usuario.msg %></p>
+					<% } %>
 				</div>
 				<div class="campo ">
 					<label for="contraseña">Contraseña</label>
 					<input type="text" name="contraseña">
+					<% if (locals.error && error.contraseña) { %>
+						<p style="color: red;"><%= error.contraseña.msg %></p>
+					<% } %>
 				</div>
 				<div class="campo">
 					<label for="">Fecha de Nacimiento</label>
-					<input type="date" name="" id="">
+					<input type="date" name="fecha" id="">
 				</div>
 				<div class="campo">
 					<label for="">Número de Documento</label>
-					<input type="number" name="dni" id="">
+					<input type="number" name="dni" id="" value="<%= usuario?usuario.dni:"" %>">
+					<% if (locals.error && error.dni) { %>
+						<p style="color: red;"><%= error.dni.msg %></p>
+					<% } %>
 				</div>
 				<div class="campo">
 					<label for="">Foto de Perfil</label>
-					<input type="text">
+					<input type="text" name="foto">
 				</div>
 				<button>Cargar</button>
 			</form>
