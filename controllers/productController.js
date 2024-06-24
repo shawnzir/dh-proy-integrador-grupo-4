@@ -96,6 +96,28 @@ const productController = {
         })
     }
   },
+  edit: function(req, res) {
+    const id = req.params.id
+    filtro = {
+      include: [
+        {association: 'usuario'}
+      ]
+    }
+    productos.findByPk(id, filtro)
+    .then(function(auto) {
+      if (!auto) {
+        return res.status(404).send('No se encontro el auto')
+      } else {
+        return res.render("product-edit", {auto: auto})
+      }
+    })
+    .catch(function(e){
+      console.log(e);
+    })
+  },
+  update: function(req, res) {
+    
+  },
   eliminar: (req,res)=>{
     
     comentarios.destroy({ where: [{producto_id : req.params.id}]}),

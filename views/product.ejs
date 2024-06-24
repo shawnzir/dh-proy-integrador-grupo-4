@@ -3,7 +3,7 @@
 <!-- Include Head -->
 <!-- Head -->
 <%- include("./partials/head") %>
-	<!-- Head -->
+<!-- Head -->
 
 	<body>
 		<% if(locals.usuario) { %>
@@ -19,7 +19,9 @@
 						<%= producto.producto  %>
 					</h2>
 					<p class="product-detail-description">
-						<a href="/product/product-add">Editar</a>
+						<% if(locals.usuario && locals.usuario.id == producto.usuario_id) { %> 
+							<h2> <a href="/product/product-edit/<%= producto.id %>">Editar</a> </h2>
+							<% } %>
 					</p>
 				</div>
 
