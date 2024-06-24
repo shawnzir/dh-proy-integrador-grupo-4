@@ -113,21 +113,18 @@ const productController = {
     })
   },
   update: (req,res)=>{
-    productos.findByPk(id, {
-      include:[{association: 'usuario'},{association: 'comentarios', include:[{association: 'usuario'}] }]
+    productos.update({
+      foto: req.body.foto,
+      producto: req.body.producto,
+      descripcion: req.body.descripcion,
+    },{
+      where: {id: req.params.id}
+    }).then(value=>{
+      console.log("Valor: ",value);
+      res.redirect(`/product/${req.params.id}`)
+    }).catch(err=>{
+      console.log(err);
     })
-      const producto = {
-        foto: req.body.foto,
-        producto: req.body.producto,
-        descripcion: req.body.descripcion,
-      };
-      productos.update(producto)
-        .then((value) => {
-          res.redirect("/product/" + value.dataValues.id)
-        })
-        .catch(function(err){
-          console.log(err);
-        })
     
     },
   
